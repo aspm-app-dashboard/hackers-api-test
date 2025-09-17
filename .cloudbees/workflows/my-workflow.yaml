@@ -2,9 +2,6 @@ apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: My workflow
 on:
-  push:
-    branches:
-      - "**"
   workflow_dispatch:
 permissions:
   scm-token-own: read
@@ -31,7 +28,7 @@ jobs:
         uses: docker://alpine:latest
         shell: sh
         run: |
-           echo "artifact ID for new-vulnerablegorepo4gh:${{ cloudbees.version }} is: ${{ steps.register-artifact.outputs.artifact-id }}"
+          echo "artifact ID for new-vulnerablegorepo4gh:${{ cloudbees.version }} is: ${{ steps.register-artifact.outputs.artifact-id }}"
       - id: upload-binary
         name: Upload binary using action
         uses: cloudbees-io/asset-chain-utils-preprod/upload-binary@v1
@@ -40,4 +37,3 @@ jobs:
           file-type: BINARY_CONTAINER
           debug: "true"
           alias: 020229604682.dkr.ecr.us-east-1.amazonaws.com/throwaway/actions/vulnerable-image:api-0.1
-      
