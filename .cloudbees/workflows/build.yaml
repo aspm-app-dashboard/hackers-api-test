@@ -21,10 +21,10 @@ jobs:
         name: Register the artifact
         uses: ./.cloudbees/actions/registerArtifact
         with:
-          artifactName: hackersApi
-          baseVersion: api
-          digest: sha256:fe315aaagc92384h98cdef===
-          url: 020229604682.dkr.ecr.us-east-1.amazonaws.com/throwaway/actions/vulnerable-image:api-0.1
+          artifactName: hackers-api-test
+          baseVersion: hapi
+          digest: sha256:fe315aaagc43598cdef===
+          url: 020229604682.dkr.ecr.us-east-1.amazonaws.com/throwaway/actions/vulnerable-image:hapi-0.1
       - id: upload-binary
         name: Upload binary using action
         uses: cloudbees-io/asset-chain-utils-preprod/upload-binary@v1
@@ -32,4 +32,4 @@ jobs:
           file-path: container-image.tar
           file-type: BINARY_CONTAINER
           debug: "true"
-          alias: 020229604682.dkr.ecr.us-east-1.amazonaws.com/throwaway/actions/vulnerable-image:api-0.1
+          alias: 020229604682.dkr.ecr.us-east-1.amazonaws.com/throwaway/actions/vulnerable-image:hapi-0.1
