@@ -1,0 +1,25 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: register-artifact
+description: "Register Artifact"
+
+inputs:
+  artifactName:
+    required: true
+  baseVersion:
+    required: true
+  digest:
+    required: false
+  url:
+    required: false  
+
+runs:
+  using: composite
+  steps:
+  - uses: cloudbees-io/register-build-artifact@v1
+    name: Publish artifact
+    with:
+        name: "${{ inputs.artifactName }}"
+        version: "${{inputs.baseVersion}}-${{cloudbees.version}}"
+        digest: "${{ inputs.digest }}"
+        url: "${{ inputs.url }}"
